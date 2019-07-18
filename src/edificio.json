@@ -1,0 +1,37 @@
+{
+  "name": "Condominio Send4",
+  "units": [
+    {
+      "number": 101,
+      "lighting": false
+    },
+    {
+      "number": 102,
+      "lighting": false
+    },
+    {
+      "number": 103,
+      "lighting": false
+    },
+    {
+      "number": 104,
+      "lighting": false
+    },
+    {
+      "number": 105,
+      "lighting": false
+    },
+    {
+      "number": 106,
+      "lighting": false
+    },
+    {
+      "number": 107,
+      "lighting": false
+    },
+    {
+      "number": 108,
+      "lighting": false
+    }
+  ]
+}
