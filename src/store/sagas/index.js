@@ -1,10 +1,11 @@
 import { all, takeLatest } from 'redux-saga/effects';
 
-import { Types as AuthTypes } from '../ducks/auth';
-import { postAuth } from './auth';
+import { Types as SceneTypes } from '../ducks/scene';
+import { getSceneState, getGeoData } from './scene';
 
 export default function* rootSaga() {
   yield all([
-    takeLatest(AuthTypes.POST, postAuth),
+    takeLatest(SceneTypes.GET_INFOS, getSceneState),
+    takeLatest(SceneTypes.GET_GEOLOCATION, getGeoData),
   ]);
 }

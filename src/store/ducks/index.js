@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import auth from './auth';
+import scene from './scene';
 
-export default () => combineReducers({
-  auth,
+export default combineReducers({
+  scene,
 });

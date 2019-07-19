@@ -1,20 +1,12 @@
+import axios from 'axios';
 
-export function getLocation() {
-  return new Promise((res, rej) => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(res);
-    } else {
-      // eslint-disable-next-line prefer-promise-reject-errors
-      rej('Geolocation is not supported by this browser.');
-    }
-  });
-}
+export const api = axios.create({
+  baseURL: 'https://api.sunrise-sunset.org/json',
+});
 
-export async function getSunriseSunset({ latitude, longitude }) {
-  try {
-    const response = await fetch(`https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}`);
-    return response.json();
-  } catch (e) {
-    return false;
-  }
-}
+export const getUserLocation = () => new Promise((resolve, reject) => {
+  navigator.geolocation.getCurrentPosition(
+    location => resolve(location),
+    error => reject(error),
+  );
+});

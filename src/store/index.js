@@ -18,4 +18,4 @@ const store = process.env.NODE_ENV === 'development'
 
 sagaMiddleware.run(sagas);
 
-export { store };
+export default store;
