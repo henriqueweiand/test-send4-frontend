@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   min-height: 100%;
+
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: space-around;
+  align-items: stretch;
   align-content: stretch;
+
   border-bottom: 5px solid green;
   transition: background-color .3s linear;
   ${(props) => {

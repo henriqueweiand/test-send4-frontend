@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Edificio from '~/components/Edificio';
+import OnOff from '~/components/OnOff';
 import { Creators as SceneActions } from '~/store/ducks/scene';
 
 import { Container } from './styles';
@@ -24,6 +25,7 @@ function Scene() {
   return (
     <Container type={scene.sun.status}>
       <Edificio />
+      <OnOff />
     </Container>
   );
 }
