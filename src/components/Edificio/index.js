@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import data from '~/edificio.json';
 import { getLocation, getSunriseSunset } from '~/services/api';
 
@@ -13,6 +14,18 @@ function Edificio() {
       const position = await getLocation();
       const { coords } = position;
       const sunrise = await getSunriseSunset(coords);
+
+      const amanhecer = moment(sunrise.results.sunrise, 'LTS').toDate();
+      const pordosol = moment(sunrise.results.sunset, 'LTS').toDate();
+      const atual = new Date();
+
+      if (
+        atual > amanhecer && atual < pordosol
+      ) {
+        console.log('dia');
+      } else {
+        console.log('noite');
+      }
 
       console.log(sunrise);
     })();

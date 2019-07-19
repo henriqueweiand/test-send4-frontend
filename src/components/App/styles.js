@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: #E5E5FF;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -10,4 +9,11 @@ export const Container = styled.div`
   align-items: center;
   align-content: stretch;
   border-bottom: 5px solid green;
+  transition: background-color .3s linear;
+  ${(props) => {
+    if (props.sol === undefined) {
+      return 'background: transparent;';
+    }
+    return (props.sol ? 'background: yellow;' : 'background: black;');
+  }}
 `;
