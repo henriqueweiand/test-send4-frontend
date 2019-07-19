@@ -11,9 +11,9 @@ export const Container = styled.div`
   border-bottom: 5px solid green;
   transition: background-color .3s linear;
   ${(props) => {
-    if (props.sol === undefined) {
+    if (props.type === undefined) {
       return 'background: transparent;';
     }
-    return (props.sol ? 'background: yellow;' : 'background: black;');
+    return (props.type ? 'background: yellow;' : 'background: black;');
   }}
 `;

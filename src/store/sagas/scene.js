@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects';
-// import moment from 'moment';
+import moment from 'moment';
 
 import { api, getUserLocation } from '~/services/api';
 import { Creators as SceneActions } from '~/store/ducks/scene';
@@ -7,10 +7,9 @@ import { Creators as SceneActions } from '~/store/ducks/scene';
 export function* getGeoData() {
   try {
     const location = yield call(getUserLocation);
-    const { coords } = location;
+    const { latitude, longitude } = location.coords;
 
-    console.log('getGeoData', coords);
-    yield put(SceneActions.requestGeolocationSuccess(coords));
+    yield put(SceneActions.requestGeolocationSuccess({ latitude, longitude }));
   } catch (e) {
     yield put(SceneActions.requestError('Não foi possivel obter a sua Geo Localização'));
   }
@@ -18,23 +17,19 @@ export function* getGeoData() {
 
 export function* getSceneState(action) {
   try {
-    const { latitude, logitude } = action.payload;
-    const response = yield call(api.get, '?', { lat: latitude, lng: logitude });
+    const { latitude, longitude } = action.payload;
+    const response = yield call(api.get, '', { params: { lat: latitude, lng: longitude } });
+    const { sunset, sunrise } = response.data.results;
 
-    // const amanhecer = moment(sunrise.results.sunrise, 'LTS').toDate();
-    // const pordosol = moment(sunrise.results.sunset, 'LTS').toDate();
-    // const atual = new Date();
+    const amanhecer = yield moment(sunrise, 'LTS').toDate();
+    const pordosol = yield moment(sunset, 'LTS').toDate();
+    const atual = yield new Date();
 
-    // if (
-    //   atual > amanhecer && atual < pordosol
-    // ) {
-    //   console.log('dia');
-    // } else {
-    //   console.log('noite');
-    // }
-
-    yield put(SceneActions.requestSceneSuccess(response.data));
-  } catch (err) {
+    yield put(SceneActions.requestSceneSuccess({
+      ...response.data.results,
+      status: (atual > amanhecer && atual < pordosol ? 'day' : 'night'),
+    }));
+  } catch (e) {
     yield put(SceneActions.requestError('Não foi possivel obter o estado do dia pela API'));
   }
 }
