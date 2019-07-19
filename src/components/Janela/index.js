@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Creators as BuildingActions } from '~/store/ducks/building';
-import { Container } from './styles';
+import { Container, Label } from './styles';
 
 const Janela = ({ number, lighting }) => {
   const dispatch = useDispatch();
@@ -14,12 +14,10 @@ const Janela = ({ number, lighting }) => {
 
   return (
 
-    <Container onClick={() => toggleLighting(number)}>
-      {number}
-      {' '}
-  -
-      {' '}
-      {lighting ? 'ligado' : 'desligado'}
+    <Container lighting={lighting} onClick={() => toggleLighting(number)}>
+      <Label>
+        {number}
+      </Label>
     </Container>
   );
 };

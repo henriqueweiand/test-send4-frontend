@@ -28,6 +28,7 @@ export function* getSceneState(action) {
     yield put(SceneActions.requestSceneSuccess({
       ...response.data.results,
       status: (atual > amanhecer && atual < pordosol ? 'day' : 'night'),
+      // status: 'night', // force para testar outros estado
     }));
   } catch (e) {
     yield put(SceneActions.requestError('Não foi possivel obter o estado do dia pela API'));

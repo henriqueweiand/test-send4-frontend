@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+const theming = {
+  day: {
+    background: '#c9dbe9',
+  },
+  night: {
+    background: '#788488',
+  },
+};
+
 export const Container = styled.div`
   min-height: 100%;
 
@@ -12,24 +21,11 @@ export const Container = styled.div`
 
   border-bottom: 5px solid green;
   transition: background-color .3s linear;
-  ${(props) => {
-    if (props.type === undefined) {
-      return 'background: transparent;';
-    }
-
-    if (props.type) {
-      return `
-        background: -webkit-linear-gradient(top, #c9dbe9 0%, #fff 100%);
-        background: -linear-gradient(top, #c9dbe9 0%, #fff 100%);
-        background: -moz-linear-gradient(top, #c9dbe9 0%, #fff 100%);
-      `;
-    }
-    return `
-      background: -webkit-linear-gradient(top, #788488 0%, #fff 100%);
-      background: -linear-gradient(top, #788488 0%, #fff 100%);
-      background: -moz-linear-gradient(top, #788488 0%, #fff 100%);
-    `;
-  }}
+  ${props => `
+    background: -webkit-linear-gradient(top, ${theming[props.theme.type].background} 0%, #fff 100%);
+    background: -linear-gradient(top, ${theming[props.theme.type].background} 0%, #fff 100%);
+    background: -moz-linear-gradient(top, ${theming[props.theme.type].background} 0%, #fff 100%);
+  `}
 
 `;
 

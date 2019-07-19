@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { Creators as BuildingActions } from '~/store/ducks/building';
 
-import { Container } from './styles';
+import { Container, Button, Label } from './styles';
 
 function Scene() {
   const [lighting, setLighting] = useState(false);
@@ -18,9 +18,12 @@ function Scene() {
 
   return (
     <Container>
-      <button type="button" onClick={toogleAllLighting}>
+      <Button type="button" onClick={toogleAllLighting}>
+        <Label>
+          Disjuntor geral
+        </Label>
         { lighting ? 'ligado' : 'desligado' }
-      </button>
+      </Button>
     </Container>
   );
 }
